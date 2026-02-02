@@ -1,14 +1,14 @@
 // Great Plate Admin Dashboard JavaScript
 
 // Supabase Configuration
-const SUPABASE_URL = 'https://kgfdwcsydjzioqdlovjy.supabase.co';
+const SUPABASE_URL = 'https://kgfdwcsydjzioqdlovjy.supabaseClient.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtnZmR3Y3N5ZGp6aW9xZGxvdmp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk5OTczNzAsImV4cCI6MjA4NTU3MzM3MH0.uvtdiHxGpMiyOdH618Hr2nrPtb3GHOsoQqm_PpRT1N4';
 
 // Simple admin password (in production, use Supabase Auth)
 const ADMIN_PASSWORD = 'greatplate2024';
 
 // Initialize Supabase client
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabaseClient.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Global state
 let currentFilter = 'all';
@@ -143,12 +143,12 @@ async function loadStats() {
     try {
         // Get counts from each table
         const [restaurants, dishes, ratings, users, reports, blocks] = await Promise.all([
-            supabase.from('restaurants').select('id', { count: 'exact', head: true }),
-            supabase.from('dishes').select('id', { count: 'exact', head: true }),
-            supabase.from('ratings').select('id', { count: 'exact', head: true }),
-            supabase.from('profiles').select('id', { count: 'exact', head: true }),
-            supabase.from('reports').select('id', { count: 'exact', head: true }),
-            supabase.from('blocked_users').select('id', { count: 'exact', head: true })
+            supabaseClient.from('restaurants').select('id', { count: 'exact', head: true }),
+            supabaseClient.from('dishes').select('id', { count: 'exact', head: true }),
+            supabaseClient.from('ratings').select('id', { count: 'exact', head: true }),
+            supabaseClient.from('profiles').select('id', { count: 'exact', head: true }),
+            supabaseClient.from('reports').select('id', { count: 'exact', head: true }),
+            supabaseClient.from('blocked_users').select('id', { count: 'exact', head: true })
         ]);
 
         document.getElementById('stat-restaurants').textContent = restaurants.count || 0;
