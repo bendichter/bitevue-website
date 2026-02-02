@@ -16,8 +16,12 @@ let allReports = [];
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🍽️ Great Plate Admin loaded');
+    console.log('Expected password:', ADMIN_PASSWORD);
+    console.log('Supabase available:', typeof window.supabase !== 'undefined');
     checkAuth();
     setupEventListeners();
+    console.log('✅ Event listeners attached');
 });
 
 // Authentication
@@ -50,12 +54,21 @@ function logout() {
 // Event Listeners
 function setupEventListeners() {
     // Login form
-    document.getElementById('login-form').addEventListener('submit', (e) => {
+    const loginForm = document.getElementById('login-form');
+    console.log('Login form found:', loginForm !== null);
+    
+    loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const password = document.getElementById('admin-password').value;
         const errorDiv = document.getElementById('login-error');
         
+        console.log('🔐 Login attempt');
+        console.log('Entered password:', password);
+        console.log('Expected password:', ADMIN_PASSWORD);
+        console.log('Match:', password === ADMIN_PASSWORD);
+        
         if (password === ADMIN_PASSWORD) {
+            console.log('✅ Password correct!');
             sessionStorage.setItem('greatplate_admin_auth', 'true');
             errorDiv.textContent = '';
             showDashboard();
