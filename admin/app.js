@@ -1,14 +1,14 @@
 // Great Plate Admin Dashboard JavaScript
 
 // Supabase Configuration
-const SUPABASE_URL = 'https://kgfdwcsydjzioqdlovjy.supabaseClient.co';
+const SUPABASE_URL = 'https://kgfdwcsydjzioqdlovjy.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtnZmR3Y3N5ZGp6aW9xZGxvdmp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk5OTczNzAsImV4cCI6MjA4NTU3MzM3MH0.uvtdiHxGpMiyOdH618Hr2nrPtb3GHOsoQqm_PpRT1N4';
 
 // Simple admin password (in production, use Supabase Auth)
 const ADMIN_PASSWORD = 'greatplate2024';
 
 // Initialize Supabase client
-const supabaseClient = window.supabaseClient.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Global state
 let currentFilter = 'all';
