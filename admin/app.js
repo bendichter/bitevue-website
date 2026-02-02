@@ -168,7 +168,7 @@ async function loadReports() {
     container.innerHTML = '<div class="loading">Loading reports...</div>';
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('reports')
             .select(`
                 *,
@@ -269,7 +269,7 @@ function createReportCard(report) {
 async function handleReportAction(reportId, action) {
     try {
         // Update report status
-        const { error: updateError } = await supabase
+        const { error: updateError } = await supabaseClient
             .from('reports')
             .update({ 
                 status: action,
@@ -283,7 +283,7 @@ async function handleReportAction(reportId, action) {
         if (action === 'actioned') {
             const report = allReports.find(r => r.id === reportId);
             if (report && report.rating_id) {
-                const { error: ratingError } = await supabase
+                const { error: ratingError } = await supabaseClient
                     .from('ratings')
                     .update({ is_hidden: true })
                     .eq('id', report.rating_id);
@@ -309,7 +309,7 @@ async function loadBlockedUsers() {
     container.innerHTML = '<div class="loading">Loading blocked users...</div>';
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('blocked_users')
             .select(`
                 *,
